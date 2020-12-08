@@ -89,12 +89,21 @@ WSGI_APPLICATION = 'cloud_rest_api.wsgi.application'
         'HOST': env("DATABASE_HOST"),
         'PORT': env("DATABASE_PORT"),
     }
+
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'counter_app_db.sqlite3',
+    }
 '''
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'counter_app_db.sqlite3',
+       'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env("DATABASE_NAME"),
+        'USER': env("DATABASE_USER"),
+        'PASSWORD': env("DATABASE_PASSWORD"),
+        'HOST': env("DATABASE_HOST"),
+        'PORT': env("DATABASE_PORT"),
     }
 }
 

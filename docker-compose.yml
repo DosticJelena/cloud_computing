@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  postgres:
+    image: postgres:12-alpine
+    container_name: postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: cloud_rest_api_db
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+
+  cloud_rest_api:
+    build: .
+    container_name: counter_app
+    ports:
+      - '8000:8000'
+    depends_on:
+      - 'postgres'
+
+volumes:
+  postgres:
