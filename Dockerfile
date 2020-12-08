@@ -1,16 +1,20 @@
 FROM python:3.8-alpine
 
-RUN apk update \
-    && apk add postgresql-client \
-    && rm -rf /var/lib/apt/lists/*
+WORKDIR /usr/src
 
-WORKDIR counter_app
+RUN apk update && \
+apk add postgresql-dev gcc python3-dev musl-dev && \ 
+pip install psycopg2 && \
+apk update && \
+apk add bash
 
-COPY requirements.txt ./
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt
-COPY . .
-
-RUN cd cloud_rest_api
 
 EXPOSE 8000
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+COPY . .
+
+
+EXPOSE 8000
+CMD cd cloud_rest_api && python manage.py migrate && python manage.py runserver 0.0.0.0:8000
