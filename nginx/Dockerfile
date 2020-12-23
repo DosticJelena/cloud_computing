@@ -1,4 +1,4 @@
 FROM nginx
 
-COPY app.conf /etc/nginx/conf.d
+COPY load-balancer.conf /etc/nginx/conf.d
 RUN rm /etc/nginx/conf.d/default.conf
