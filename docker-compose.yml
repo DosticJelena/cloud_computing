@@ -9,6 +9,7 @@ services:
     ports:
       - '5433:5432'
     environment:
+      POSTGRES_USER: jelena
       POSTGRES_PASSWORD: password
       POSTGRES_DB: cloud_rest_api_db
     volumes:
