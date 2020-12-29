@@ -3,7 +3,6 @@ FROM python:3.8-alpine
 EXPOSE 8000
 
 LABEL maintainer="Jelena Dostic"
-LABEL description="Dockerfile"
 
 WORKDIR /usr/src
 
